@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const MongooseSchema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // schema
-const postSchema = new MongooseSchema(
+const postSchema = new Schema(
   {
     title: {
       type: String,
@@ -18,9 +18,8 @@ const postSchema = new MongooseSchema(
       maxlength: [10000, 'Post size is too long'],
     },
     author: {
-      type: String,
-      //required: [true, 'Author is required'],
-      maxlength: [120, 'Author too long'],
+      type: Schema.Types.ObjectId,
+      ref: 'User',
     },
     image: String,
   },

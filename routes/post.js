@@ -8,8 +8,6 @@ router.get('/add_post', (req, res) => {
 
 router.post('/add_post', postValidator, postCont.addPost);
 
-router.get('/post', (req, res) => {
-  res.render('post');
-});
+router.get('/:id', postCont.getPost);
 
 module.exports = router;

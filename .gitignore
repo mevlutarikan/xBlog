@@ -30,8 +30,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# All dotenv environment variables file except sample .env file .env.sample
 .env*
+!.env.sample
 
 # next.js build output
 .next

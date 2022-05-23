@@ -11,6 +11,10 @@ const postSchema = new Schema(
       maxlength: [120, 'Title can not be greater than 120 characters'],
       trim: true,
     },
+    subTitle: {
+      type: String,
+      maxlength: [300, 'Sub title can not be greater than 300 characters'],
+    },
     postBody: {
       type: String,
       required: [true, 'Post Content is required'],

@@ -26,9 +26,9 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <%for(let post of posts){ %>
           <div class="post-preview">
-            <a href="post">
+            <a href="post/<%=post._id%>">
               <h2 class="post-title"><%=post.title %></h2>
-              <h3 class="post-subtitle"><%=post.preview %></h3>
+              <h3 class="post-subtitle"><%=post.subTitle %></h3>
             </a>
             <p class="post-meta">
               Posted by

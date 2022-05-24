@@ -4,8 +4,9 @@ const ajv = new Ajv({ allErrors: true });
 const postSchema = {
   type: 'object',
   properties: {
-    title: { type: 'string', minLength: 2, maxLength: 250 },
-    postBody: { type: 'string', minLength: 2, maxLength: 15000 },
+    title: { type: 'string', minLength: 2, maxLength: 120 },
+    subTitle: { type: 'string', minLength: 2, maxLength: 300 },
+    postBody: { type: 'string', minLength: 2, maxLength: 10000 },
   },
   required: ['title', 'postBody'],
 };

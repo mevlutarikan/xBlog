@@ -40,3 +40,5 @@ typings/
 # vscode
 .vscode
 
+# Directory of uploaded files
+public/uploads/

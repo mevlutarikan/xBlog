@@ -6,6 +6,7 @@ module.exports.addPost = async (req, res) => {
     subTitle: req.body.subTitle,
     postBody: req.body.postBody,
     author: req.body.author,
+    images: [req.file.filename],
   };
   try {
     await postModel.create(post);

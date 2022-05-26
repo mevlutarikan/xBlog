@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/_head') %>
+
+  <body>
+    <!-- Navigation -->
+    <%- include('partials/_navigation') %>
+
+    <!-- Page Header -->
+    <header class="masthead" <% if(post.images[0]) { %>
+      style="background-image: url('/uploads/<%=post.images[0]%>')" <% } else { %>
+      style="background-image: url('/img/contact-bg.jpg')" <%}%>>
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Edit Post</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <form
+            action="/post/edit_post/<%= post._id %>"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group floating-label-form-group controls">
+              <label>Title</label>
+              <input
+                type="text"
+                value="<%= post.title %>"
+                class="form-control"
+                id="title"
+                name="title"
+                data-validation-required-message="Please enter a post title."
+                required
+              />
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group floating-label-form-group controls">
+              <label>Sub Title-Summary</label>
+              <textarea rows="2" class="form-control" id="SubTitle" name="subTitle">
+                <%= post.subTitle %>
+              </textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group floating-label-form-group controls">
+              <label>Post</label>
+              <textarea
+                rows="8"
+                class="form-control"
+                id="content"
+                name="postBody"
+                data-validation-required-message="Please write post content."
+                required
+              >
+                <%= post.postBody %>
+              </textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+            <br />
+            <div class="form-group controls">
+              <label for="image" class="control-label">Choose a post image (optional)</label>
+              <input type="file" id="image" name="image" class="form-control-file" />
+            </div>
+            <div id="success">
+              <button type="submit" class="btn btn-primary" id="sendMessageButton">Done</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Footer -->
+    <%- include('partials/_footer') %>
+  </body>
+</html>

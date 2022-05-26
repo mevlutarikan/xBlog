@@ -1,12 +1,12 @@
 const router = require('express').Router();
 
-//validators
+// controllers
 const postCont = require('../controllers/post');
 
 //middlewares
 const upload = require('../lib/upload');
 
-// controllers
+//validators
 const postValidator = require('../validators/post');
 
 router.get('/add_post', (req, res) => {
@@ -14,6 +14,9 @@ router.get('/add_post', (req, res) => {
 });
 
 router.post('/add_post', upload.single('image'), postValidator, postCont.addPost);
+
+router.get('/edit_post/:id', postCont.getPostForEdit);
+router.post('/edit_post/:id', upload.single('image'), postValidator, postCont.editPost);
 
 router.get('/:id', postCont.getPost);
 

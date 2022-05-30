@@ -18,6 +18,8 @@ router.post('/add_post', upload.single('image'), postValidator, postCont.addPost
 router.get('/edit_post/:id', postCont.getPostForEdit);
 router.post('/edit_post/:id', upload.single('image'), postValidator, postCont.editPost);
 
+router.get('/delete_post/:id', postCont.deletePost);
+
 router.get('/:id', postCont.getPost);
 
 module.exports = router;

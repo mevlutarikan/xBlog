@@ -2,7 +2,7 @@ const postModel = require('../models/post');
 
 module.exports.getIndex = async (req, res) => {
   const posts = await postModel
-    .find({}, null, {
+    .find({ isDeleted: false }, null, {
       sort: { _id: 'desc' },
       limit: 5,
     })

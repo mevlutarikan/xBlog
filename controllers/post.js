@@ -1,4 +1,6 @@
 const postModel = require('../models/post');
+const fs = require('fs');
+const { uploadDir } = require('../lib/config');
 
 module.exports.addPost = async (req, res) => {
   const post = {
@@ -6,8 +8,8 @@ module.exports.addPost = async (req, res) => {
     subTitle: req.body.subTitle,
     postBody: req.body.postBody,
     author: req.body.author,
-    images: [req.file.filename],
   };
+  if (req.file) post.images = [req.file.filename];
   try {
     await postModel.create(post);
     res.redirect('/');
@@ -19,6 +21,7 @@ module.exports.addPost = async (req, res) => {
 module.exports.getPost = async (req, res) => {
   try {
     let post = await postModel.findById(req.params.id);
+    if (post.isDeleted) throw 'Invalid Post ID';
     res.render('post', { post });
   } catch (err) {
     return res.status(404).json({ msg: 'Invalid Post ID', err });
@@ -48,5 +51,21 @@ module.exports.editPost = async (req, res) => {
     res.redirect('/');
   } catch (err) {
     return res.status(500).json({ msg: 'Database error on updating the post', err });
+  }
+};
+
+module.exports.deletePost = async (req, res) => {
+  const post = {
+    isDeleted: true,
+  };
+
+  try {
+    const result = await postModel.findByIdAndUpdate(req.params.id, post);
+    result.images.forEach((image) => {
+      fs.renameSync(uploadDir + '/' + image, uploadDir + '/recycleBin/' + image);
+    });
+    res.redirect('/');
+  } catch (err) {
+    return res.status(500).json({ msg: 'Database error on deleting the post', err });
   }
 };

@@ -26,6 +26,10 @@ const postSchema = new Schema(
       ref: 'User',
     },
     images: [String],
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

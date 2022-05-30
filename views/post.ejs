@@ -37,7 +37,12 @@
     </article>
     <div class="d-flex">
       <a href="/post/edit_post/<%=post._id%>" class="btn btn-primary mx-auto">Edit Post</a>
-      <a href="/post/delete_post/<%=post._id%>" class="btn btn-danger mx-auto">Delete Post</a>
+      <a
+        href="/post/delete_post/<%=post._id%>"
+        class="btn btn-danger mx-auto"
+        onclick="return confirm('ARE YOU SURE?')"
+        >Delete Post</a
+      >
     </div>
     <hr />
 
